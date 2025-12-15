@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+metadata:
+ name: app1
+ labels:
+   purpose: ingress-demo
+   app: app1
+kind: Deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      purpose: ingress-demo
+      app: app1
+  template:
+   metadata:
+     name: app1
+     labels: 
+       purpose: ingress-demo
+       app: app1
+   spec: 
+     containers:
+       - name: nginx
+         image: chakradhar05/app1:v1
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: app1
+spec:
+  selector:
+    purpose: ingress-demo
+    app: app1
+  ports:
+  - protocal: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+spec:
+  rules:
+  - host: "app1.chakra86.shop"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
