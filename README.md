@@ -2,6 +2,8 @@
 
 Traffic flow
 ==
+![FLOW](ingress.jpg)
+
 - Client -> DNS -> ALB -> Listener -> Rules -> Target groups -> POD IP (target-type IP)
 - Client -> DNS -> NLB -> Listener -> Rules -> Target groups (Host IP and host/node port) -> Kube-proxy -> pod/port
   - When target type is "instance"
