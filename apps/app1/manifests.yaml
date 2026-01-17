@@ -14,13 +14,13 @@ spec:
   template:
    metadata:
      name: app1
-     labels: 
+     labels:
        purpose: ingress-demo
        app: app1
-   spec: 
+   spec:
      containers:
        - name: nginx
-         image: chakradhar05/app1:v1
+         image: chakradhar05/app2:v1
 ---
 apiVersion: v1
 kind: Service
@@ -31,7 +31,7 @@ spec:
     purpose: ingress-demo
     app: app1
   ports:
-  - protocal: TCP
+  - protocol: TCP
     port: 80
     targetPort: 80
 ---
@@ -39,7 +39,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app1
+  annotations:
+   alb.ingress.kubernetes.io/scheme: internet-facing
+   alb.ingress.kubernetes.io/target-type: ip
+   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+   alb.ingress.kubernetes.io/group.name: roboshop
 spec:
+  ingressClassName: alb
   rules:
   - host: "app1.chakra86.shop"
     http:
