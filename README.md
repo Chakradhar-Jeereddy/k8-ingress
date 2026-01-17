@@ -20,14 +20,14 @@ How?
 
 Configuration
 ==
-- Create OIDC provider in AWS  (For authentication without AWS access key and secret key)
+- Create OIDC (Open id Connect) provider in AWS  (For authentication without AWS access key and secret key)
 - It validates the service account JWT and issues short lived token for kube resources access AWS resources.
 - Create service account and role in EKS.
 - Create policy in AWS
 - Attach it to role in EKS
 - Install AWS LB ingress controller drivers using helm and assing the service account.
 - Create ingress resource with annotations to call AWS APIs and service and a deployment to test.
-- 
+
 Controller accessing AWS APIs?
 ==
 - It happens through annotations in ingress resource.
