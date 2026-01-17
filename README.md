@@ -31,7 +31,7 @@ Configuration
 Controller accessing AWS APIs?
 ==
 - It happens through annotations in ingress resource.
-- Important annotations
+- Important annotations => https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/annotations/
   - kubernetes.io/ingress.class: alb  (ALB ingress controller will handle/manage the ingress resource)
   - spec:
      ingressClassName: alb
